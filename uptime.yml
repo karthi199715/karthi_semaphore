@@ -1,0 +1,14 @@
+---
+- name: playbook for simple 1 GB partition
+  hosts: all
+  become: true
+  tasks:
+    - name: First Task - Using shell module to check if virtualenv is present or not
+      ansible.builtin.shell:
+        cmd: service sshd status
+      register: virtualenv_output
+      ignore_errors: True
+
+    - name: Second Task - Print the full output
+      ansible.builtin.debug:
+        var: virtualenv_output
